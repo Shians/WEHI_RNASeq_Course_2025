@@ -6,4 +6,6 @@ _book/
 _freeze/
 .Rhistory
 
+data/
+misc/
 output

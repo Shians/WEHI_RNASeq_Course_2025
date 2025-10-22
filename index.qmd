@@ -2,14 +2,15 @@
 toc: false
 ---
 
-# Preface {.unnumbered}
-
-Code-based analysis is an increasingly important skill for modern biomedical research. The R coding language enables user-friendly data tidying and transformation, and creation of publication-ready graphics. R is also core to bioinformatics research, supporting all types of ’omics data analysis, and general statistical analysis too.  
-
-Designed for complete coding beginners, this course will introduce data wrangling, data visualisation, and basic data analysis in R. We will start by covering the foundations of R, and the user-friendly ‘tidyverse’ software, which is applicable to many areas of medical and clinical research, and beyond. 
-
 ## How to use this book
-This course is divided into 4 sessions. In the first 3 sessions, we will cover the basics of R and the tidyverse, and in the last session, we will apply these skills to an example analysis. Each session is divided into sections, which are designed to be completed in order. Each section contains a mix of text, code, and exercises.
+
+This book contains the materials for the WEHI RNA-seq course. It follows on from the WEHI R programming course, so it is recommended that you have completed that course or have equivalent R programming experience before undertaking this course.
+
+<!-- ### Session 5: RNA-seq part 1
+In this session, we introduce RNA-seq data analysis using the limma-voom workflow. You will learn how to construct `DGEList` objects for the `edgeR` package, filter lowly expressed genes, normalize data for library size and RNA composition, perform exploratory analysis with multidimensional scaling (MDS) plots, and extract data from Bioconductor objects for visualization with `ggplot2`. The dataset comprises gene expression from three mouse mammary gland cell populations (basal, luminal progenitor, and mature luminal cells).
+
+### Session 6: RNA-seq part 2
+This session completes the RNA-seq analysis workflow. You will learn how to construct design and contrast matrices for specifying statistical comparisons, use the `voom()` function to model the mean-variance relationship in RNA-seq data, fit gene-wise linear models with empirical Bayes moderation, perform statistical testing to identify differentially expressed genes, create publication-quality MA plots to visualize results, and export analysis results to files for sharing or publication. -->
 
 Code is shown in blue, with the output below it in grey, just like it would show up in the R console.
 
@@ -20,46 +21,6 @@ Code is shown in blue, with the output below it in grey, just like it would show
 ```
 
 You can run the code yourself by copying it (using the copy button in the top right of the code block) and pasting it into R on your computer.
-
-Practice exercises will appear in purple boxes:
-
-::: {.callout-important title="Practice exercises"}
-
-Multiple choice questions will appear as below. Click on the circle next to your chosen answer to see whether it is correct or not
-
-::: question
-1\. Which country was R invented in?
-
-::: choices
-::: choice
-USA
-:::
-
-::: {.choice .correct-choice}
-New Zealand
-:::
-
-::: choice
-Australia
-:::
-
-::: choice
-France
-:::
-:::
-:::
-
-A detailed explanation of the solutions to practice questions can be found by clicking on the grey 'Solutions' text like so:
-
-<details>
-
-<summary>Solutions</summary>
-
-R was invented by Ross Ihaka and Robert Gentleman from the University of Auckland as a programming language to teach introductory statistics
-
-</details>
-
-:::
 
 ## Acknowledgements
 We would like to thank Kerry Ko, Brendan Ansell and the WEHI education office for their work in organising and facilitating this course. We would also like to thank all of our instructors and tutors for making this course possible.
