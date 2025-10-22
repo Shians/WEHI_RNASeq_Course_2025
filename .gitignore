@@ -3,6 +3,7 @@
 .DS_Store
 
 _book/
+_freeze/
 .Rhistory
 
 output
