@@ -21,7 +21,7 @@ book:
   chapters:
     - index.qmd
     - 1_content.qmd
-    # - 99_further_reading.qmd
+    - 99_further_reading.qmd
 
 bibliography: references.bib
 csl: vancouver_superscript.csl
