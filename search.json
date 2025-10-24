@@ -198,5 +198,15 @@
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>RNA-seq workshop</span>"
     ]
+  },
+  {
+    "objectID": "99_further_reading.html",
+    "href": "99_further_reading.html",
+    "title": "Further reading",
+    "section": "",
+    "text": "RNAseq123 Workflow - The original workflow this workshop is based on.\nA guide to creating design matrices for gene expression experiments - A detailed guide on how to create design matrices for various experimental designs.\nlimma User’s Guide - Comprehensive documentation for the limma package.\nedgeR User’s Guide - Comprehensive documentation for the edgeR package.\nRsubread User’s Guide - Comprehensive documentation for the Rsubread package for read alignment and quantification.",
+    "crumbs": [
+      "Further reading"
+    ]
   }
 ]
