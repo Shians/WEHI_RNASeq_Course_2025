@@ -7,8 +7,18 @@ format:
 ---
 
 # Further reading {.unnumbered}
- - [RNAseq123 Workflow](https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/limmaWorkflow.html) - The original workflow this workshop is based on.
- - [A guide to creating design matrices for gene expression experiments](https://f1000research.com/articles/9-1444) - A detailed guide on how to create design matrices for various experimental designs.
- - [limma User's Guide](https://bioconductor.org/packages/devel/bioc/vignettes/limma/inst/doc/usersguide.pdf) - Comprehensive documentation for the limma package.
- - [edgeR User's Guide](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) - Comprehensive documentation for the edgeR package.
- - [Rsubread User's Guide](https://bioconductor.org/packages/devel/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf) - Comprehensive documentation for the Rsubread package for read alignment and quantification.
+ - [RNAseq123 Workflow](https://bioconductor.org/packages/release/workflows/vignettes/RNAseq123/inst/doc/limmaWorkflow.html): The original workflow this workshop is based on.
+ - [A guide to creating design matrices for gene expression experiments](https://f1000research.com/articles/9-1444): A detailed guide on how to create design matrices for various experimental designs.
+ - [limma User's Guide](https://bioconductor.org/packages/devel/bioc/vignettes/limma/inst/doc/usersguide.pdf): Comprehensive documentation for the limma package.
+ - [edgeR User's Guide](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf): Comprehensive documentation for the edgeR package.
+ - [Rsubread User's Guide](https://bioconductor.org/packages/devel/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf): Comprehensive documentation for the Rsubread package for read alignment and quantification.
+
+# General R resources
+- [WEHI R course](https://kzeglinski.github.io/new_wehi_r_course/): this is a great resource for learning R from the ground up, with a focus on data analysis in biology.
+- [R for Data Science](https://r4ds.had.co.nz): this is a great online book that teaches you to do data science with R. Covering a wide range of topics using the `tidyverse` packages.
+- [The R Gallery](https://r-graph-gallery.com): this shows a range of plots that can be created in R using `ggplot2` with associated code for each plot.
+- [The paletteer gallery](https://pmassicotte.github.io/paletteer_gallery/): this is a visual showcase of the nice colour palettes contained in the `paletteer` package. Really helpful for making your plots look cute!
+- [R-bloggers](https://www.r-bloggers.com): this is a blog that aggregates posts from a wide range of R bloggers. It is a great resource for finding out about new packages and techniques in R.
+- [Datacamp R documentation](https://www.datacamp.com/doc/r): this provides a reference to a lot of programming and data analysis in R using base R functionality.
+- [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html): this allows you to turn your R scripts into reports that combine code, the output of that code and text you can write to explain it. In fact, this whole course book was written using Quarto! There is also a [good explanation in the R for Data Science book](https://r4ds.hadley.nz/quarto.html) about why quarto is useful for data analysis
+- [RLadies Melbourne events](https://r-ladiesmelbourne.github.io/): RLadies Melbourne is the Melbourne chapter of the global [RLadies](https://rladies.org/) organisation. They regularly run educational workshops using R, and events are open to everyone!
