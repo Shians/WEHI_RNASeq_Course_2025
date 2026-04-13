@@ -84,7 +84,7 @@ samplenames <- c(
 
 ## A brief detour to factors
 
-Not that when we declared the `group` variable, we used factors. Factors are a special data type that is used to encode categorical variables. They have multiple useful properties in comparison to regular character vectors:
+Note that when we declared the `group` variable, we used factors. Factors are a special data type that is used to encode categorical variables. They have multiple useful properties in comparison to regular character vectors:
 - They allow you to specify the order of the levels.
 - They are stored as integers but displayed as labels.
 - They encode all the valid levels of the factor, even if they are not present in the data.
@@ -117,7 +117,7 @@ dge$genes <- gene_anno
 
 A more common way to create a `DGEList` object is to read in the count data as a matrix and then create the `DGEList` object using the `DGEList()` function. We can pull apart our existing `DGEList` object and recreate it using this method.
 
-::: .callout-info
+::: {.callout-note}
 What you can do with data objects is determined by package that the object comes from. You will need to read the package documentation to find out how to access data from the object. Here `edgeR` informs us that the `DGEList` has data that can be accessed as if it was a list.
 :::
 
@@ -334,13 +334,13 @@ contr_matrix <- makeContrasts(
 contr_matrix
 ```
 
-There are two things to note about a design matrix. First, the sum of the numbers in each row is equal to 0. Second, the way that you set up the equation in the matrix will determine the interpretation of the log-fold-change calculated later, as well as the meaning of up-regulated and down-regulated genes. For example, the contrast `Basal - LP` will give a positive log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group. If we had set up the contrast as `LP - Basal`, then the opposite would be true, and we would get a negative log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group.
+There are two things to note about a contrast matrix. First, the sum of the numbers in each row is equal to 0. Second, the way that you set up the equation in the matrix will determine the interpretation of the log-fold-change calculated later, as well as the meaning of up-regulated and down-regulated genes. For example, the contrast `Basal - LP` will give a positive log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group. If we had set up the contrast as `LP - Basal`, then the opposite would be true, and we would get a negative log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group.
 
 ### Variance modelling with voom
 
 We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is generally not normally distributed, but log transforming count data gives it a roughly normal distribution sufficient for linear models to work well. To do this, limma transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously.
 
-In addition to the normalisation steps, the limma-voom pipeline uses the `voom()` function to generate weights for the individual observations based on a modelled mean-variance relationship. the mean-variance relationship is used to estimate the variance of each individual observation of sample-gene expression, by applying these weights to the linear modelling step, it helps the data better meet the assumptions of the linear model and results in more accurate statistical inferences.
+In addition to the normalisation steps, the limma-voom pipeline uses the `voom()` function to generate weights for the individual observations based on a modelled mean-variance relationship. The mean-variance relationship is used to estimate the variance of each individual observation of sample-gene expression, and by applying these weights to the linear modelling step, it helps the data better meet the assumptions of the linear model and results in more accurate statistical inferences.
 
 The `voom()` function takes as arguments, our `DGEList` object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the 'voom-plot'.
 
@@ -356,11 +356,11 @@ The output of `voom()` (our variable `v`) is an `EList` object which contains th
 -   `weights` - numeric matrix of precision weights.
 -   `design` - the design matrix.
 
-The MA plot shows the mean-variance relationship of the data. The x-axis is the average log2 expression of each gene, and the y-axis is the log2 standard deviation of each gene. The idea is that the variance of a gene can be estimated as a function of its main expression, and that this estimate is more accurate than the direct calculation of the variance.
+The voom plot shows the mean-variance relationship of the data. The x-axis is the average log2 expression of each gene, and the y-axis is the log2 standard deviation of each gene. The idea is that the variance of a gene can be estimated as a function of its main expression, and that this estimate is more accurate than the direct calculation of the variance.
 
 ### Fitting the linear model
 
-We are now ready to fit our linear model with `lmFit()`, which calculates coefficients we defined in our design matrix `design`. The resulting object, `vfit` is a `MArrayLM` object. It contains a information about our genes (the same data frame as `genes` from our `EList` object `v` above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called `coefficients`. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups. These coefficients are weighted averages of the log-cpm of each gene in each group.
+We are now ready to fit our linear model with `lmFit()`, which calculates coefficients we defined in our design matrix `design`. The resulting object, `vfit` is a `MArrayLM` object. It contains information about our genes (the same data frame as `genes` from our `EList` object `v` above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called `coefficients`. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups. These coefficients are weighted averages of the log-cpm of each gene in each group.
 
 ```{r}
 vfit <- lmFit(v)
@@ -420,7 +420,7 @@ head(top)
 
 The MA plot is a plot of log-fold-change (M-values) against log-expression averages (A-values), this is a common plot in RNA sequencing analysis to visualise the result of differential expression tests. It can be created using the `plotMA()` from the `limma` package. Creating this plot requires 3 pieces of information:
 
--   `object = efit`: The the fitted object containing the log-fold-change and log-expression averages
+-   `object = efit`: The fitted object containing the log-fold-change and log-expression averages
 -   `coef = 1`: The column number of the contrast to plot since there are 3 different contrasts fitted within the object.
 -   `status = dt[, 1]`: A vector of numerics denoting whether a gene is up-regulated or down-regulated.
 
@@ -500,7 +500,7 @@ mds_result <- plotMDS(dge, plot = FALSE)
 mds_result
 ```
 
-We see that there's are `x` and `y` values in the list returned by the `plotMDS()` function, we can put these into a table and see if they match up to the positions plotted by the function.
+We see that there are `x` and `y` values in the list returned by the `plotMDS()` function, we can put these into a table and see if they match up to the positions plotted by the function.
 
 ```{r}
 mds_tibble <- tibble(
