@@ -214,7 +214,7 @@ as_tibble(log(dge$counts + 0.5), rownames = "gene") %>%
 We can compare this to the cpm values which when calculated using the `cpm()` function, automatically applies normalisation factors if they are present.
 
 ```{r}
-as_tibble(cpm(dge$counts, log = TRUE), rownames = "gene") %>%
+as_tibble(cpm(dge, log = TRUE), rownames = "gene") %>%
   pivot_longer(
     where(is.numeric),
     names_to = "sample", values_to = "expression"
