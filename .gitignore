@@ -1,4 +1,5 @@
 /.quarto/
+.Rprofile
 .Rproj.user
 .DS_Store
 
@@ -8,6 +9,7 @@ _freeze/
 
 data/
 misc/
+renv/
 output
 
 CLAUDE.md
