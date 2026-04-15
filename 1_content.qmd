@@ -115,16 +115,16 @@ dge$genes <- gene_anno
 
 ## Alternative construction of the DGEList object
 
-A more common way to create a `DGEList` object is to read in the count data as a matrix and then create the `DGEList` object using the `DGEList()` function. We can pull apart our existing `DGEList` object and recreate it using this method.
+A more common way to create a `DGEList` object is to read in the count data as a matrix and then create the `DGEList` object using the `DGEList()` function. We can pull apart our existing `DGEList` object and recreate it using this method. In practice, you will likely be downloading count data as a matrix from a file, and then creating the `DGEList` object using the `DGEList()` function, so this is a useful exercise to understand how to construct the data object from its components.
 
 ::: {.callout-note}
 What you can do with data objects is determined by package that the object comes from. You will need to read the package documentation to find out how to access data from the object. Here `edgeR` informs us that the `DGEList` has data that can be accessed as if it was a list.
 :::
 
 ```{r}
-counts <- dge$counts
-samples <- dge$samples
-genes <- dge$genes
+counts <- dge$counts    # Usually read in from some counts.txt file
+samples <- dge$samples  # Usually read in or constructed from sample metadata
+genes <- dge$genes      # Usually read in from some gene_anno.txt or constructed from rownames of the counts matrix
 
 # create DGEList object
 dge <- DGEList(counts = counts, samples = samples, genes = genes)
@@ -152,7 +152,7 @@ keep <- filterByExpr(dge)
 table(keep)
 proportions(table(keep))
 
-dge <- dge[keep, , keep.lib.sizes = FALSE]
+dge <- dge[keep, , keep.lib.sizes = FALSE] # drop the filtered genes and recalculate library sizes
 dim(dge$counts)
 ```
 
