@@ -139,11 +139,11 @@ The first step of our analysis is to filter out lowly expressed genes. There are
 - Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction [@mcintyre2011].
   - Insufficient mixing of solutions during library preparation can result in uneven distribution of reads.
   - RNA sequencing can be thought of as sampling. Measurement errors will occur simply due to the random nature of the sampling process. This problem affects lowly abundant RNA species more because the relative error for small count values is larger than it would be for more highly abundant RNA species.
-- Genes that are very lowly expressed do not produce sufficient information to be useful for biological interpretation. For example, it is very hard to believe the biological significance of genes that have counts ranging from 0 to 3 across samples even if come up as statistically significant.
+- Genes that are very lowly expressed do not produce sufficient information to be useful for biological interpretation. For example, it is very hard to believe the biological significance of genes that have counts ranging from 0 to 3 across samples even if they come up as statistically significant.
 
 Removing these highly variable, lowly expressed genes increases your 'power' to detect differentially expressed genes [@bourgon2010], where 'power' is your ability to detect true positives. In testing for differential expression, a statistical test is conducted for each gene. When a high number of statistical tests are performed, a portion of them will be significant purely due to random chance. A common procedure to control for the number of false positive is to perform 'multiple testing correction' on the p-values. This adjusts the p-value in a way that reduces the number of false positives but comes at the cost of reduced power to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power.
 
-The `edgeR` provides the `filterByExpr()` function to automate gene filtering. By default, it aims to keep genes with a count of 10 or more, in at least as many samples as the smallest experimental group. In our experiment, there are 3 phenotype groups each with 3 samples. Therefore we retain only genes that have 10 or more counts in 3 or more samples. The actual filtering is done on counts per million, prevent bias against samples with small library sizes. This complex procedure is the reason why the package provides a function to perform the filtering for you.
+The `edgeR` package provides the `filterByExpr()` function to automate gene filtering. By default, it aims to keep genes with a count of 10 or more, in at least as many samples as the smallest experimental group. In our experiment, there are 3 phenotype groups each with 3 samples. Therefore we retain only genes that have 10 or more counts in 3 or more samples. The actual filtering is done on counts per million, to prevent bias against samples with small library sizes. This complex procedure is the reason why the package provides a function to perform the filtering for you.
 
 The output of this function is a vector of logicals, indicating which genes (rows) should be kept and which filtered.
 
@@ -285,7 +285,7 @@ dge <- calcNormFactors(dge, method = "TMM")
 
 ## Linear modelling
 
-To identify differentially expressed genes from our normalised gene expression data, we will use the `limma` package to fit linear models to the genes. A linear model is a broad class of statistical models that fit the value of an response (or dependent) variable as a linear function of one or more explanatory (or independent) variables (also called covariates).
+To identify differentially expressed genes from our normalised gene expression data, we will use the `limma` package to fit linear models to the genes. A linear model is a broad class of statistical models that fit the value of a response (or dependent) variable as a linear function of one or more explanatory (or independent) variables (also called covariates).
 
 The general form of a linear model looks like this:
 
@@ -334,7 +334,7 @@ contr_matrix <- makeContrasts(
 contr_matrix
 ```
 
-There are two things to note about a contrast matrix. First, the sum of the numbers in each row is equal to 0. Second, the way that you set up the equation in the matrix will determine the interpretation of the log-fold-change calculated later, as well as the meaning of up-regulated and down-regulated genes. For example, the contrast `Basal - LP` will give a positive log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group. If we had set up the contrast as `LP - Basal`, then the opposite would be true, and we would get a negative log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group.
+There are two things to note about a contrast matrix. First, the sum of the numbers in each column is equal to 0. Second, the way that you set up the equation in the matrix will determine the interpretation of the log-fold-change calculated later, as well as the meaning of up-regulated and down-regulated genes. For example, the contrast `Basal - LP` will give a positive log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group. If we had set up the contrast as `LP - Basal`, then the opposite would be true, and we would get a negative log-fold-change for genes that are up-regulated in the `Basal` group compared to the `LP` group.
 
 ### Variance modelling with voom
 
@@ -384,9 +384,9 @@ To actually test if the values are significantly different from 0, we use the `e
 efit <- eBayes(vfit)
 ```
 
-We can now look at the number of differentially expressed genes using the `decideTests()` function. The output of this function is a matrix where each column is a contrast (comparison of interest) and each row is a gene. The numbers 1, -1 and 0 mean up-regulated, down-regulated or not significantly differentially expressed, respectively.
+We can now look at the number of differentially expressed genes using the `decideTests()` function. The output of this function is a matrix where each column is a contrast (comparison of interest) and each row is a gene. The numbers 1, -1 and 0 mean up-regulated, down-regulated or not significantly differentially expressed, respectively. The statistical significance is determined by the adjusted p-value being less than 0.05.
 
-Note that `decideTests()` also accounts for multiple testing. The default method is Benjamini and Hochberg [@benjamini1995] but several others are also available.
+By default, `decideTests()` adjusts p-values for multiple testing using the Benjamini and Hochberg [@benjamini1995] method, but several others are also available.
 
 ```{r}
 dt <- decideTests(efit)
@@ -555,7 +555,7 @@ ggplot(mds_tibble, aes(x = x, y = y, col = group)) +
   )
 ```
 
-We see that some labels are very hard to read due to the overlapping, so we can use the `ggrepel` package to fix this. The `ggrepel` package creates labels that repel each other in order to avoid overlap. It's a good idea to use it in conjunction with `geom_point()` in order to keep track of exact coordinate of the data point.
+We see that some labels are very hard to read due to the overlapping, so we can use the `ggrepel` package to fix this. The `ggrepel` package creates labels that repel each other in order to avoid overlap. It's a good idea to use it in conjunction with `geom_point()` in order to keep track of exact coordinates of the data points.
 
 ```{r}
 library(ggrepel)
