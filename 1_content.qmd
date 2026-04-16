@@ -485,7 +485,7 @@ Now that we have produced a series of plots and the top genes table, we can save
 dir.create("output")
 
 write_csv(top, "output/top_genes_BasalvsLP.csv")
-ggsave("output/heatmap_BasalvsLP.png", heatmap$gtable, height = 10, width = 7)
+ggsave("output/heatmap.png", heatmap$gtable, height = 10, width = 7)
 ```
 
 With that we have come to the conclusion of the RNA-seq analysis and this course. You have now learned how to use various `tidyverse` packages to operate on data and create publication quality figures. You have also learned how to use the `limma` and `edgeR` packages to perform differential expression analysis on RNA-seq data. You should now be able to apply these skills to perform analysis on your own data.
